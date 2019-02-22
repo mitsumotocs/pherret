@@ -1,0 +1,19 @@
+{
+  "name": "mitsumotocs/pherret",
+  "description": "Pherret",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Joji Mitsumoto",
+      "email": "mitsumotocs@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.6"
+  },
+  "autoload": {
+    "files": ["src/Pherret.php"]
+  }
+}
