@@ -49,6 +49,8 @@ namespace Pherret
      */
     class App
     {
+        const VERSION = '2019.2.22';
+
         /** @var array $routes */
         protected static $routes = [];
         /** @var \Closure $errorHandler Exception will be passed */
