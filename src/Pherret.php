@@ -49,7 +49,7 @@ namespace Pherret
      */
     class App
     {
-        const VERSION = '2019.2.22';
+        const VERSION = '2019.3.8';
 
         /** @var array $routes */
         protected static $routes = [];
@@ -286,6 +286,28 @@ namespace Pherret
         }
 
         /**
+         * @param array $headers
+         * @return $this
+         */
+        public function addHeaders(array $headers)
+        {
+            foreach ($headers as $name => $value) {
+                $this->addHeader($name, $value);
+            }
+            return $this;
+        }
+
+        /**
+         * @param string $name
+         * @param mixed $value
+         * @return $this
+         */
+        public function setHeader($name, $value)
+        {
+            return $this->addHeader($name, $value);
+        }
+
+        /**
          * @param string $name
          * @return $this
          */
@@ -308,12 +330,12 @@ namespace Pherret
         }
 
         /**
-         * @return mixed
+         * @return void
          */
         public function render()
         {
             $this->sendHeaders();
-            return $this->__toString();
+            echo $this->__toString();
         }
     }
 
@@ -337,8 +359,8 @@ namespace Pherret
          */
         public function render()
         {
-            $this->addHeader('Content-Type', 'application/json');
-            echo parent::render();
+            $this->setHeader('Content-Type', 'application/json');
+            parent::render();
         }
     }
 
@@ -362,6 +384,17 @@ namespace Pherret
             if (isset($template)) {
                 $this->setTemplate($template);
             }
+        }
+
+        /**
+         * @return string
+         */
+        public function __toString()
+        {
+            ob_start();
+            $data = &$this->data;
+            include_once $this->template;
+            return ob_get_clean();
         }
 
         /**
@@ -396,10 +429,8 @@ namespace Pherret
          */
         public function render()
         {
+            $this->setHeader('Content-Type', 'text/html');
             parent::render();
-            $this->addHeader('Content-Type', 'text/html');
-            $data = &$this->data;
-            include_once $this->template;
         }
 
         /**
@@ -407,9 +438,8 @@ namespace Pherret
          */
         public function dump()
         {
-            parent::render();
-            $this->addHeader('Content-Type', 'text/html');
-            echo sprintf('<pre>%s</pre>', print_r($this->data, true));
+            $this->setHeader('Content-Type', 'text/html');
+            echo sprintf('<pre>%s</pre>', parent::__toString());
         }
     }
 
