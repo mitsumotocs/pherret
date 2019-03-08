@@ -308,6 +308,18 @@ namespace Pherret
         }
 
         /**
+         * @param array $headers
+         * @return $this
+         */
+        public function setHeaders(array $headers)
+        {
+            foreach ($headers as $name => $value) {
+                $this->setHeader($name, $value);
+            }
+            return $this;
+        }
+
+        /**
          * @param string $name
          * @return $this
          */
