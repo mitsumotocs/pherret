@@ -46,7 +46,7 @@ If you get version information, then you are good to go. Can't go any simpler.
 
 #### Tell ClassLoader where to load classes from
 
-ClassLoader will load class files according to PSR-4. If your directory and namespace is like:
+ClassLoader will load class files according to PSR-4 (sort of). If your directory and namespace is like:
 
     /path/to/src/
     [Acme]
