@@ -1,3 +1,5 @@
+# ⚠️ THIS REPO IS OBSOLETE AND NOT MAINTAINED; DO NOT USE.
+
 # Pherret
 
 PHP MVC framework in a single file. No black screen required.
